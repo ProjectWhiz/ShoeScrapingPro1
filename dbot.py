@@ -35,8 +35,8 @@ class ShoeCog(commands.Cog):
     @commands.command()
     async def shoes(self, ctx, search_type: str, *, query: str):
         """Search for shoes by brand or price"""
-        await ctx.send(f"Received command: {search_type} with query: {query}")
         try:
+            await ctx.send(f"Received command: {search_type} with query: {query}")
             search_params = {}
             if search_type.lower() == 'brand':
                 search_params['brand'] = query
@@ -49,16 +49,30 @@ class ShoeCog(commands.Cog):
             await ctx.send("Searching for shoes... Please wait.")
             results = scrape_shoes(search_params)
 
-            if not results:
-                await ctx.send("No matching shoes found.")
-                return
 
             for item in results:
-                embed = discord.Embed(title=item['name'], color=discord.Color.blue())
-                embed.add_field(name="Price", value=f"${item['price']}", inline=True)
-                if 'url' in item:
-                    embed.add_field(name="Link", value=item['url'], inline=False)
-                await ctx.send(embed=embed)
+                try:
+                    embed = discord.Embed(
+                        title=str(item.get('name', 'No Name')),
+                        color=discord.Color.blue(),
+                        description="Found Match!"
+                    )
+                    embed.add_field(
+                        name="Price",
+                        value=f"${item.get('price', 'N/A')}",
+                        inline=True
+                    )
+                    if 'url' in item:
+                        embed.add_field(
+                            name="Link",
+                            value=item['url'],
+                            inline=False
+                        )
+                    await ctx.send(embed=embed)
+                    print(f"Sent embed for item: {item['name']}")
+                except Exception as e:
+                    print(f"Error creating embed for item {item}: {e}")
+                    await ctx.send(f"Error displaying item: {str(e)}")
 
         except ValueError:
             await ctx.send("Invalid price value. Please enter a number.")

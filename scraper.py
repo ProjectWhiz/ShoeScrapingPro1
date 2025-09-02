@@ -78,8 +78,7 @@ def scrape_shoes(search_params):
                     print("Product price element not found")
             else:
                 print("Invalid search parameter - must include 'brand' or 'price'")
-                return
-        
+                return found_items
         # Print results
         if found_items:
             print("\nFound matching items:")
@@ -90,6 +89,7 @@ def scrape_shoes(search_params):
                 print("-" * 50)
         else:
             print("No matching items found.")
+        return found_items
             
     except requests.RequestException as e:
         print(f"Error fetching data: {e}")
