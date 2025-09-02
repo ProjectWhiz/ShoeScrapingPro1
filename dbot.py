@@ -59,7 +59,7 @@ class ShoeCog(commands.Cog):
                     )
                     embed.add_field(
                         name="Price",
-                        value=f"${item.get('price', 'N/A')}",
+                        value=f"{item.get('price', 'N/A')}",
                         inline=True
                     )
                     if 'url' in item:
