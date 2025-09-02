@@ -1,0 +1,78 @@
+Current Status:
+
+I have now finished the main parsing program, Everything now runs as expected. Next Steps could be to add Logic that will also parsers
+for the links to each item that is appended to the list. This more than likely will require you to parse for 'a' tags alongside the other info
+Also the discord bot will need to be created and tied to the current program 
+
+8/27/25
+
+
+
+
+Foot Locker webscraper:
+
+Goal:
+
+1. Check against user's price to find shoes within range
+2. Check for a certain shoe type at the users price
+3. Send notification via discord
+
+
+Steps to goal:
+
+*1 . Set up Venv 
+
+* 2. Find a website to scrap
+- Currently using footlocker (https://www.footlocker.com/en/category/mens/shoes.html)
+- Check Robot.txt to make sure its valid
+
+* 3. Setup user input to take in budget price or shoe type if applicable
+- Input needed, Price point or type of shoe
+- Shoe type may not be needed if price point is there
+
+4. Scrape site by finding everything at the price point of everything from the shoe type
+
+EX: Give results by showing all shoes at a certain price
+EX: Show results for all Jordan 4's
+
+5. Connect the finished scraper to discord to send notifications
+- Users will see results within a server that can be joined by anyone
+
+
+Future Goals:
+
+- Setup multiple scrapers to run for different things (Female shoes, Shoes size etc.)
+- Setup up a system to allow the program to run based on a server vote
+
+EX: Users within server will vote for a shoe each week which will be seen and ran by the program to gather the results to send in the server.
+
+
+Warnings:
+
+Figure out how many request can be done at what frequency so the IP won't get blocked
+
+Creating Discord Bot:
+
+Go to the Discord Developer Portal
+
+Click New Application → give it a name (e.g., ShoeFinder).
+
+Go to Bot → “Add Bot” → confirm.
+
+Copy the Bot Token (you’ll need this in your code). ⚠️ Don’t share it!
+
+Under Privileged Gateway Intents, enable:
+
+MESSAGE CONTENT INTENT (so it can read messages/commands).
+
+2. Invite Bot to Your Server
+
+In the app settings, go to OAuth2 → URL Generator.
+
+Check bot under scopes.
+
+Under Bot Permissions, check Send Messages, Embed Links, maybe Read Message History.
+
+Copy the generated URL, paste in browser, invite bot to your server.
+
+
